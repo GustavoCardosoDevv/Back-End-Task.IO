@@ -1,4 +1,4 @@
-# Task.IO – Sprint 1 Backend (Fastify + TypeScript) – CJS friendly
+# Task.IO – Sprint 2 Backend (Fastify + TypeScript) – CJS friendly
 
 Versão **CommonJS** compatível com `ts-node-dev` no Windows (sem ESM/top-level await).
 
