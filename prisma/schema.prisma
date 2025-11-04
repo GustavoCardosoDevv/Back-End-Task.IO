@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  lists  List[]
+  tasks  Task[]
+  tokens RefreshToken[]
+}
+
+model List {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  position  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User   @relation(fields: [userId], references: [id])
+  tasks Task[]
+
+  @@index([userId])
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  userId      String
+  listId      String
+  title       String
+  description String?
+  status      TaskStatus @default(todo)
+  dueDate     DateTime?
+  priority    Int        @default(3)
+  tags        String     @default("")
+  position    Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  list List @relation(fields: [listId], references: [id])
+
+  @@index([userId])
+  @@index([listId])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique @db.VarChar(512) // recomendado ser único
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  @@map("refreshtoken")
+}
+
+enum TaskStatus {
+  todo
+  doing
+  done
+}

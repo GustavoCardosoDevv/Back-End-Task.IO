@@ -1,0 +1,32 @@
+{
+  "name": "taskio-sprint1-backend",
+  "version": "1.0.0",
+  "description": "API Task.IO Sprint 1 - Fastify + Prisma + MySQL",
+  "main": "src/server.ts",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "@fastify/helmet": "^13.0.2",
+    "@fastify/jwt": "^10.0.0",
+    "@prisma/client": "^6.18.0",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^16.4.5",
+    "fastify": "^5.6.1",
+    "mysql2": "^3.15.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^24.10.0",
+    "prisma": "^6.18.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}
