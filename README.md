@@ -17,5 +17,4 @@ API RESTful desenvolvida em **Node.js + Fastify + Prisma (MySQL)** para o projet
 
 ---
 
-## 📂 Estrutura de pastas
 
